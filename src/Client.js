@@ -846,6 +846,8 @@ class Client extends EventEmitter {
      * @property {boolean} [sendSeen=true] - Mark the conversation as seen after sending the message
      * @property {string} [stickerAuthor=undefined] - Sets the author of the sticker, (if sendMediaAsSticker is true).
      * @property {string} [stickerName=undefined] - Sets the name of the sticker, (if sendMediaAsSticker is true).
+     * @property {string} [stickerAvatar=undefined] - Sets the avatar of the sticker, (if sendMediaAsSticker is true).
+     * @property {string} [stickerLink=undefined] - Sets the Link View More in the sticker, (if sendMediaAsSticker is true).
      * @property {string[]} [stickerCategories=undefined] - Sets the categories of the sticker, (if sendMediaAsSticker is true). Provide emoji char array, can be null.
      * @property {MessageMedia} [media] - Media to be sent
      */
@@ -908,6 +910,8 @@ class Client extends EventEmitter {
                 internalOptions.attachment, {
                     packName: options.stickerName,
                     packPublish: options.stickerAuthor,
+                    isAvatar: options.stickerAvatar,
+                    androidApp: options.stickerLink,
                     categories: options.stickerCategories
                 }, this.pupPage
             );
