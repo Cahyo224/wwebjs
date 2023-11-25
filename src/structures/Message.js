@@ -51,7 +51,7 @@ class Message extends Base {
          * Message content
          * @type {string}
          */
-        this.body = this.hasMedia ? data.caption || '' : data.body || data.pollName || '';
+        this.body = this.hasMedia ? data.caption || '' : data.body || '';
 
         /**
          * Message type
@@ -271,20 +271,6 @@ class Message extends Base {
             this.selectedRowId = data.listResponse.singleSelectReply.selectedRowId;
         }
 
-        if (this.type === MessageTypes.POLL_CREATION) {
-            this.pollName = data.pollName;
-            this.pollOptions = data.pollOptions;
-            this.allowMultipleAnswers = Boolean(!data.pollSelectableOptionsCount);
-            this.pollInvalidated = data.pollInvalidated;
-            this.isSentCagPollCreation = data.isSentCagPollCreation;
-
-            delete this._data.pollName;
-            delete this._data.pollOptions;
-            delete this._data.pollSelectableOptionsCount;
-            delete this._data.pollInvalidated;
-            delete this._data.isSentCagPollCreation;
-        }
-
         return super._patch(data);
     }
 
@@ -415,8 +401,8 @@ class Message extends Base {
         await this.client.pupPage.evaluate(async (msgId, chatId) => {
             let msg = window.Store.Msg.get(msgId);
             let chat = window.Store.Chat.get(chatId);
-
-            return await chat.forwardMessages([msg]);
+            window.Store.Chat.forwardMessagesToChats([msg],[chat]);
+         
         }, this.id._serialized, chatId);
     }
 
