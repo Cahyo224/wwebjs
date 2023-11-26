@@ -63,6 +63,11 @@ exports.ExposeStore = (moduleRaidStr) => {
         ...window.mR.findModule('toWebpSticker')[0],
         ...window.mR.findModule('addWebpMetadata')[0]
     };
+
+    window.Store.Settings = {
+        ...window.mR.findModule('ChatlistPanelState')[0],
+        setPushname: window.mR.findModule((m) => m.setPushname && !m.ChatlistPanelState)[0].setPushname
+    };
   
     window.Store.GroupUtils = {
         ...window.mR.findModule('createGroup')[0],
