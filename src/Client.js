@@ -1379,6 +1379,18 @@ class Client extends EventEmitter {
         return new Label(this, label);
     }
 
+    async getStories(contactId) {
+            const messages = await this.pupPage.evaluate(async (contactId) => {
+                const models = window.Store.StatusV3._models.find(model => model.__x_id._serialized == contactId);
+                if (models === undefined) {
+                    return [];
+                }
+                return models.msgs.map(msg => window.WWebJS.getMessageModel(msg));
+            }, contactId);
+    
+            return messages.map(msg => new Message(this, msg));
+        }
+
     /**
      * Get all Labels assigned to a chat 
      * @param {string} chatId
