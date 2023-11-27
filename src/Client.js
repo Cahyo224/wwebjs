@@ -847,6 +847,7 @@ class Client extends EventEmitter {
      * @property {string} [stickerAuthor=undefined] - Sets the author of the sticker, (if sendMediaAsSticker is true).
      * @property {string} [stickerName=undefined] - Sets the name of the sticker, (if sendMediaAsSticker is true).
      * @property {string} [stickerAvatar=undefined] - Sets the avatar of the sticker, (if sendMediaAsSticker is true).
+     * @property {string} [stickerAnimated=undefined] - Sets the animeted of the sticker, (if sendMediaAsSticker is true).
      * @property {string} [stickerLink=undefined] - Sets the Link View More in the sticker, (if sendMediaAsSticker is true).
      * @property {string[]} [stickerCategories=undefined] - Sets the categories of the sticker, (if sendMediaAsSticker is true). Provide emoji char array, can be null.
      * @property {MessageMedia} [media] - Media to be sent
